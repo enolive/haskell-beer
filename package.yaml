@@ -23,6 +23,7 @@ dependencies:
 - text
 - mongoDB
 - http-types
+- wai-extra
 
 library:
   source-dirs: src

@@ -1,7 +1,7 @@
 GET http://localhost:3000/beers
 
 ###
-GET http://localhost:3000/beers/6560aee25df5fc0fca000000
+GET http://localhost:3000/beers/6560a9ba5df5fcf284000001
 
 ###
 POST http://localhost:3000/beers
@@ -14,13 +14,13 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/beers/656098135df5fcc1c1000002
+PUT http://localhost:3000/beers/6560a9ba5df5fcf284000001
 Content-Type: application/json
 
 {
-  "brand": "Plörre",
-  "name": "Würg",
-  "strength": 4.2
+  "brand": "Kitzmann",
+  "name": "Bergkirchweih Bier",
+  "strength": 5.5
 }
 
 ###
