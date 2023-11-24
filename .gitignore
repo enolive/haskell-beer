@@ -1,0 +1,6 @@
+.idea/
+.stack-work/
+out/
+haskell-beer.cabal
+*~
+/db/data/

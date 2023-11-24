@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  database:
+    build: ./db
+    container_name: beers-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db/data:/data/db

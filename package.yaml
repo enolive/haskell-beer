@@ -1,0 +1,51 @@
+name:                haskell-beer
+version:             0.1.0.0
+github:              "githubuser/haskell-beer"
+license:             MIT
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2023 Author name here"
+# synopsis: A new project for TDD with Haskell.
+# description: haskell-beer see README.md for further details.
+# category: Other
+
+extra-source-files:
+- README.md
+- package.yaml
+- LICENSE.md
+
+ghc-options: -Wall
+
+dependencies:
+- base >= 4.7 && < 5
+- scotty
+- aeson
+- text
+- mongoDB
+
+library:
+  source-dirs: src
+
+executables:
+  haskell-beer-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskell-beer
+
+tests:
+  haskell-beer-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskell-beer
+    - hspec
+    - QuickCheck
