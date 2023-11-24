@@ -1,1 +1,27 @@
-GET http://localhost:3000/scotty/fuck
+GET http://localhost:3000/beers
+
+###
+GET http://localhost:3000/beers/6560aee25df5fc0fca000000
+
+###
+POST http://localhost:3000/beers
+Content-Type: application/json
+
+{
+  "brand": "Plörre",
+  "name": "Würg",
+  "strength": 4.3
+}
+
+###
+PUT http://localhost:3000/beers/656098135df5fcc1c1000002
+Content-Type: application/json
+
+{
+  "brand": "Plörre",
+  "name": "Würg",
+  "strength": 4.2
+}
+
+###
+DELETE http://localhost:3000/beers/6560a9a95df5fcf284000000

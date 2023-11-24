@@ -22,6 +22,7 @@ dependencies:
 - aeson
 - text
 - mongoDB
+- http-types
 
 library:
   source-dirs: src
