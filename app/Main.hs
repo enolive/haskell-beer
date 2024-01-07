@@ -19,8 +19,8 @@ instance Parsable DB.ObjectId where
 main :: IO ()
 main = do
   pipe <- DB.connect $ DB.host "localhost"
-  let run = DB.access pipe DB.master "beers" :: MonadIO m => DB.Action m a -> m a
-  scotty 3000 $ do
+  let run = DB.access pipe DB.master "beersdb" :: MonadIO m => DB.Action m a -> m a
+  scotty 3010 $ do
     middleware logStdoutDev
     get "/beers" $ do
       beers <- liftAndCatchIO $ run Repository.allBeers

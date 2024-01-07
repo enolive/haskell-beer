@@ -1,10 +1,10 @@
-GET http://localhost:3000/beers
+GET http://localhost:3010/beers
 
 ###
-GET http://localhost:3000/beers/6560a9ba5df5fcf284000001
+GET http://localhost:3010/beers/6560a9ba5df5fcf284000001
 
 ###
-POST http://localhost:3000/beers
+POST http://localhost:3010/beers
 Content-Type: application/json
 
 {
@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/beers/6560a9ba5df5fcf284000001
+PUT http://localhost:3010/beers/6560a9ba5df5fcf284000001
 Content-Type: application/json
 
 {
@@ -24,4 +24,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/beers/6560a9a95df5fcf284000000
+DELETE http://localhost:3010/beers/6560a9a95df5fcf284000000
