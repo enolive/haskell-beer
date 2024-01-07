@@ -3,13 +3,19 @@
 
 module Repository (createBeer, singleBeer, allBeers, deleteBeerById, updateBeer) where
 
-import Model
-import qualified Database.MongoDB as DB
-import Database.MongoDB ((!?), (=:))
 import Data.Text (Text)
+import Database.MongoDB ((!?), (=:))
+import qualified Database.MongoDB as DB
+import Model
 
 collection :: Text
 collection = "Beer"
+
+runWithDB :: DB.Action IO a -> IO a
+runWithDB act = do
+  pipe <- DB.connect $ DB.host "localhost"
+  let run = DB.access pipe DB.master "beersdb"
+  run act
 
 toDocument :: BeerWithId -> DB.Document
 toDocument BeerWithId {value = Beer {..}, ..} =
@@ -35,25 +41,29 @@ fromDocument doc =
           }
     }
 
-createBeer :: BeerWithId -> DB.Action IO DB.ObjectId
-createBeer beer = do
-  (DB.ObjId oid) <- DB.insert collection $ toDocument beer
-  return oid
+createBeer :: BeerWithId -> IO DB.ObjectId
+createBeer beer =
+  runWithDB $ do
+    (DB.ObjId oid) <- DB.insert collection $ toDocument beer
+    return oid
 
-updateBeer :: BeerWithId -> DB.Action IO ()
+updateBeer :: BeerWithId -> IO ()
 updateBeer beer =
-  DB.save collection $ toDocument beer
+  runWithDB $ DB.save collection $ toDocument beer
 
-deleteBeerById :: DB.ObjectId -> DB.Action IO ()
+deleteBeerById :: DB.ObjectId -> IO ()
 deleteBeerById beerId =
-  DB.deleteOne (DB.select ["_id" =: beerId] collection)
+  runWithDB $
+    DB.deleteOne (DB.select ["_id" =: beerId] collection)
 
-allBeers :: DB.Action IO [BeerWithId]
-allBeers = do
-  beers <- DB.find (DB.select [] collection) >>= DB.rest
-  return (fromDocument <$> beers)
+allBeers :: IO [BeerWithId]
+allBeers =
+  runWithDB $ do
+    docs <- DB.find (DB.select [] collection) >>= DB.rest
+    return (fromDocument <$> docs)
 
-singleBeer :: DB.ObjectId -> DB.Action IO (Maybe BeerWithId)
-singleBeer oid = do
-  doc <- DB.findOne (DB.select ["_id" =: oid] collection)
-  return (fromDocument <$> doc)
+singleBeer :: DB.ObjectId -> IO (Maybe BeerWithId)
+singleBeer oid =
+  runWithDB $ do
+    doc <- DB.findOne (DB.select ["_id" =: oid] collection)
+    return (fromDocument <$> doc)

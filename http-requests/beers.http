@@ -1,20 +1,20 @@
 GET http://localhost:3010/beers
 
 ###
-GET http://localhost:3010/beers/6560a9ba5df5fcf284000001
+GET http://localhost:3010/beers/65995e8a6b9be41cfc8dc110
 
 ###
 POST http://localhost:3010/beers
 Content-Type: application/json
 
 {
-  "brand": "Plörre",
-  "name": "Würg",
-  "strength": 4.3
+  "brand": "Kitzmann",
+  "name": "Bergkirchweihbier",
+  "strength": 5.5
 }
 
 ###
-PUT http://localhost:3010/beers/6560a9ba5df5fcf284000001
+PUT http://localhost:3010/beers/65995e8a6b9be41cfc8dc110
 Content-Type: application/json
 
 {
@@ -24,4 +24,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3010/beers/6560a9a95df5fcf284000000
+DELETE http://localhost:3010/beers/659ae85b5df5fcb4a0000000
